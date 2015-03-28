@@ -13,20 +13,36 @@ import android.widget.TextView;
 
 public class MainActivity extends ActionBarActivity {
 
+    private EditText number;
+    private Button convert;
+    private Textview result;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        final EditText number =(EditText)findViewById(R.id.number);
-        Button cost = (Button)findViewById(R.id.button);
-        final TextView result = ((TextView)findViewById(R.id.result));
 
+
+       number =(EditText)findViewById(R.id.number);
+       result = ((TextView)findViewById(R.id.result));
+       button = ((Button)findViewById(R.id.button));
+
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                int numberToConvert = number.getText();
+                Binary2Decimal b = new Binary2Decimal();
+                String binary = b.integerToBinary(numberToConvert);
+                result.setText(binary);
+
+
+            }
+        }
     }
-  public void onClick(View v){
 
-  }
-
-    @Override
+        @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
